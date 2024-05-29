@@ -20,8 +20,7 @@ function Header() {
                                     <i className="fas fa-home"></i> Home
                                 </Link>
                             </li>
-
-                            {/* 게시판 */}
+                            
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             {auth ? (
@@ -43,18 +42,18 @@ function Header() {
                             ) : (
                                 <>
                                     {/* 로그인 */}
-                                    <li className="nav-item">
+                                    <div className="nav-item">
                                         <Link className="nav-link" to="/login">
                                             로그인
                                         </Link>
-                                    </li>
+                                    </div>
 
                                     {/* 회원가입 */}
-                                    <li className="nav-item">
+                                    <div className="nav-item">
                                         <Link className="nav-link" to="/join">
                                             회원가입
                                         </Link>
-                                    </li>
+                                    </div>
                                 </>
                             )}
                         </ul>
