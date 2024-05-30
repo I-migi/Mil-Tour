@@ -31,7 +31,7 @@ public class MemberRegisterDto {
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .username(dto.getUsername())
-//                .roles(Role.USER)
+                .roles(Role.USER)
                 .build();
     }
 }

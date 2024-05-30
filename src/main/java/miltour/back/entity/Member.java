@@ -8,9 +8,13 @@ import lombok.Setter;
 import miltour.back.common.BaseTimeEntity;
 import miltour.back.common.Role;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 
 @Getter
 @Entity
@@ -18,9 +22,10 @@ import java.util.Collection;
 public class Member extends BaseTimeEntity implements UserDetails {
 
     @Id @GeneratedValue
-    @Column(name ="MEMBER_ID")
+    @Column(name = "MEMBER_ID")
     private Long id;
 
+    // 이메일로 로그인함
     @Column(nullable = false)
     private String email;
 
@@ -30,56 +35,60 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-//    @Enumerated(EnumType.STRING)
-//    private Role roles;
+    @Enumerated(EnumType.STRING)
+    private Role roles;
 
+
+
+    //== 생성자 Builder ==//
     @Builder
-    public Member(String email, String password, String username) {
+    public Member(String email, String password, String username, Role roles) {
         this.email = email;
         this.password = password;
         this.username = username;
-//        this.roles = roles;
+        this.roles = roles;
     }
 
+    //== update ==//
     public void update(String password, String username) {
         this.password = password;
         this.username = username;
     }
 
-
+    //========== UserDetails implements ==========//
+    /**
+     * Token을 고유한 Email 값으로 생성합니다
+     * @return email;
+     */
+    @Override
+    public String getUsername() {
+        return email;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add( new SimpleGrantedAuthority("ROLE_" + this.roles.name()));
+        return authorities;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return true;
     }
 }
