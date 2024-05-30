@@ -14,6 +14,9 @@ function Join() {
     const [pwdMessage, setPwdMessage] = useState('');
     const [cpwdMessage, setCheckPwdMessage] = useState('');
 
+    const [isPwd, setIsPwd] = useState(false);
+    const [isCpwd, setIsCheckPwd] = useState(false);
+
 
 
 
@@ -34,10 +37,10 @@ function Join() {
         const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
         if (!passwordRegExp.test(event.target.value)) {
             setPwdMessage( "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!");
-          //  setPwd(false);
+            setIsPwd(false);
         } else {
             setPwdMessage("안전한 비밀번호 입니다.");
-            //setPwd(true);
+            setIsPwd(true);
         }
 
 
@@ -49,10 +52,10 @@ function Join() {
         setCheckPwd(event.target.value);
         if (pwd !== currentPasswordConfirm) {
             setCheckPwdMessage("비밀번호가 다릅니다!");
-           // setIsCheckPwd(false);
+            setIsCheckPwd(false);
         } else {
             setCheckPwdMessage("비밀번호를 확인했습니다.");
-          //  setIsCheckPwd(true);
+            setIsCheckPwd(true);
         }
 
 
@@ -86,12 +89,34 @@ function Join() {
     /* 회원가입 */
     const join = async () => {
 
-        const req = {
-            email: email,
-            password: pwd,
-            passwordCheck: checkPwd,
-            username: name,
+        if(isPwd == true) {
+            if(isCpwd == true) {
+                const req = {
+                    email: email,
+                    password: pwd,
+                    passwordCheck: checkPwd,
+                    username: name,
+                }
+                await axios.post("http://localhost:8989/user/register", req)
+                    .then((resp) => {
+                        console.log("[Join.js] join() success :D");
+                        console.log(resp.data);
+
+                        alert(resp.data.username + "님 회원가입을 축하드립니다 🎊");
+                        navigate("/login");
+
+                    }).catch((err) => {
+                        console.log("[Join.js] join() error :<");
+                        console.log(err);
+
+                        const resp = err.response;
+                        if (resp.status === 400) {
+                            alert(resp.data);
+                        }
+                    });
+            }
         }
+
         // 이메일 중복확인
             await axios.get("http://localhost:8989/user/checkId", { params: { email: email } })
                 .then((resp) => {
@@ -112,23 +137,7 @@ function Join() {
                     }
                 });
 
-        await axios.post("http://localhost:8989/user/register", req)
-            .then((resp) => {
-                console.log("[Join.js] join() success :D");
-                console.log(resp.data);
 
-                alert(resp.data.username + "님 회원가입을 축하드립니다 🎊");
-                navigate("/login");
-
-            }).catch((err) => {
-                console.log("[Join.js] join() error :<");
-                console.log(err);
-
-                const resp = err.response;
-                if (resp.status === 400) {
-                    alert(resp.data);
-                }
-            });
     }
 
     return (

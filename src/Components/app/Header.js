@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 
+import "../../css/header.css"
+
 function Header() {
     const { auth, setAuth } = useContext(AuthContext);
 
     return (
-        <header>
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        // style ="background-color : #0FA958;"
+         <header>
+            <nav className="navbar navbar-expand-md navbar-light sticky-top">
                 <div className="container">
                     <div
                         className="navbar-collapse collapse justify-content-between"
