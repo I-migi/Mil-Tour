@@ -30,6 +30,7 @@ function Header() {
                                         <Link className="nav-link" to="/checkpwd">
                                             <i className="fas fa-sign-out-alt"></i> {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "}
                                         </Link>
+                                        &nbsp;
                                     </li>
 
                                     {/* 로그아웃 */}
@@ -42,18 +43,18 @@ function Header() {
                             ) : (
                                 <>
                                     {/* 로그인 */}
-                                    <div className="nav-item">
+                                    <li className="nav-item">
                                         <Link className="nav-link" to="/login">
                                             로그인
                                         </Link>
-                                    </div>
+                                    </li>
 
                                     {/* 회원가입 */}
-                                    <div className="nav-item">
+                                    <li className="nav-item">
                                         <Link className="nav-link" to="/join">
                                             회원가입
                                         </Link>
-                                    </div>
+                                    </li>
                                 </>
                             )}
                         </ul>

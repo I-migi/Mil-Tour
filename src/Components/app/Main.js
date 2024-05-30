@@ -1,6 +1,6 @@
 import Router from "../router/Router"
 import Footer from "./Footer";
-// import "../../css/main.css";
+import "../../css/main.css"
 
 function Main() {
 
