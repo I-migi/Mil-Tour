@@ -20,10 +20,22 @@ function Header() {
                             {/* 메인 화면 */}
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">
-                                    <i className="fas fa-home"></i> Home
+                                    <i className="fas fa-home"></i> 관광지
                                 </Link>
                             </li>
-                            
+                            {/* 맛집 화면 */}
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/food">
+                                    <i className="fas fa-food"></i> 맛집
+                                </Link>
+                            </li>
+                            {/* 맛집 화면 */}
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/zzim">
+                                    <i className="fas fa-zzim"></i> 찜
+                                </Link>
+                            </li>
+
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             {auth ? (
@@ -31,7 +43,7 @@ function Header() {
                                     {/* 회원 정보 */}
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/checkpwd">
-                                            <i className="fas fa-sign-out-alt"></i> {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "}
+                                            {/*<i className="fas fa-sign-out-alt"></i> {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "}*/}
                                         </Link>
                                         &nbsp;
                                     </li>
