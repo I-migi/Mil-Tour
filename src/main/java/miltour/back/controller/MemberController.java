@@ -56,4 +56,16 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.OK).body(memberUpdate);
     }
 
+    @PostMapping("/{memberId}/favorites/{locationId}")
+    public ResponseEntity<Void> addFavorite(@PathVariable Long memberId, @PathVariable Long locationId){
+        memberService.addFavorite(memberId,locationId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/{memberId}/favorites/{favoriteId}")
+    public ResponseEntity<Void> removeFavorite(@PathVariable Long memberId, @PathVariable Long favoriteId){
+        memberService.removeFavorite(memberId,favoriteId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }

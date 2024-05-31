@@ -38,6 +38,8 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role roles;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorite> favorites = new ArrayList<>();
 
 
     //== 생성자 Builder ==//
@@ -53,6 +55,19 @@ public class Member extends BaseTimeEntity implements UserDetails {
     public void update(String password, String username) {
         this.password = password;
         this.username = username;
+    }
+
+    public void addFavorite(Location location) {
+        Favorite favorite = Favorite.builder()
+                .member(this)
+                .location(location)
+                .build();
+        favorites.add(favorite);
+    }
+
+    public void removeFavorite(Favorite favorite) {
+        favorites.remove(favorite);
+        favorite.setMember(null);
     }
 
     //========== UserDetails implements ==========//

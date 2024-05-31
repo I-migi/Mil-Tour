@@ -10,7 +10,11 @@ import miltour.back.dto.request.member.MemberRegisterDto;
 import miltour.back.dto.request.member.MemberUpdateDto;
 import miltour.back.dto.response.member.MemberResponseDto;
 import miltour.back.dto.response.member.MemberTokenDto;
+import miltour.back.entity.Favorite;
+import miltour.back.entity.Location;
 import miltour.back.entity.Member;
+import miltour.back.repository.FavoriteRepository;
+import miltour.back.repository.LocationRepository;
 import miltour.back.repository.MemberRepository;
 import miltour.back.security.jwt.CustomUserDetailsService;
 import miltour.back.security.jwt.JwtTokenUtil;
@@ -31,6 +35,8 @@ public class MemberService {
 
     private final PasswordEncoder encoder;
     private final MemberRepository memberRepository;
+    private final LocationRepository locationRepository;
+    private final FavoriteRepository favoriteRepository;
 
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService userDetailsService;
@@ -78,6 +84,30 @@ public class MemberService {
         );
         updateMember.update(encodePwd, updateDto.getUsername());
         return MemberResponseDto.fromEntity(updateMember);
+    }
+
+    public void addFavorite(Long memberId, Long locationId){
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new ResourceNotFoundException("Member","ID",memberId.toString()));
+        Location location = locationRepository.findById(locationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Location","ID",locationId.toString()));
+
+        member.addFavorite(location);
+        memberRepository.save(member);
+    }
+
+    public void removeFavorite(Long memberId, Long favoriteId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new ResourceNotFoundException("Member", "ID", memberId.toString()));
+        Favorite favorite = favoriteRepository.findById(favoriteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Favorite", "ID", favoriteId.toString()));
+
+        if (!favorite.getMember().getId().equals(member.getId())) {
+            throw new MemberException("해당 찜 항목은 이 회원의 것이 아닙니다.", HttpStatus.FORBIDDEN);
+        }
+
+        member.removeFavorite(favorite);
+        memberRepository.save(member);
     }
 
     /**
