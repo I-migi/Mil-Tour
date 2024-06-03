@@ -18,6 +18,10 @@ g
 .env.test.local
 .env.production.local
 
+#API KEY
+
+
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
