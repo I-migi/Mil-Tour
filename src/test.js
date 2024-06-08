@@ -5,7 +5,7 @@ const converter = require("xml-js");
 
 
 
-let url = 'https://openapi.mnd.go.kr//xml/DS_MND_GUN_WLFRINSTLTN_SRNDT/1/17/'
+let url = 'https://openapi.mnd.go.kr/3930313637313137373534353632313635/xml/DS_MND_GUN_WLFRINSTLTN_SRNDT/1/17/'
 
 router.get("/", (req, res) => {
     request(

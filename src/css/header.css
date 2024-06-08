@@ -1,3 +1,43 @@
 .navbar {
     background-color: #0FA958;
+
 }
+#login {
+    background-color: #FFC700;
+    margin: 10px;
+    border-radius: 20px;
+    border: 2px solid;
+
+
+
+}
+
+#logintext{
+    color: black;
+
+}
+
+#signup {
+    background-color: #FFC700;
+    margin: 10px;
+    border-radius: 20px;
+    border: 2px solid;
+
+}
+
+#signuptext{
+    color: black;
+
+}
+
+#list {
+    padding-top: 40px;
+
+
+}
+
+header {
+    border-bottom: 1px solid;
+}
+
+

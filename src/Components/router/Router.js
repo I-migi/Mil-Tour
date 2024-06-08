@@ -9,6 +9,7 @@ import MemberUpdate from "../member/MemberUpdate";
 import CheckPwd from "../member/CheckPwd";
 import Food from "../main/Food";
 import Zzim from "../main/Zzim";
+import Chung from "../tour_list/Chung";
 
 function Router() {
 
@@ -24,7 +25,7 @@ function Router() {
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/food" element={<Food />}></Route>
             <Route path="/zzim" element={<Zzim />}></Route>
-
+            <Route path="/청간정콘도" element={<Chung />}></Route>
         </Routes>
     );
 }

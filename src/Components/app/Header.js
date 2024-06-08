@@ -9,35 +9,37 @@ function Header() {
 
     return (
         // style ="background-color : #0FA958;"
+        // navbar-light sticky-top
          <header>
-            <nav className="navbar navbar-expand-md navbar-light sticky-top">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container">
                     <div
                         className="navbar-collapse collapse justify-content-between"
                         id="navbar-content"
                     >
-                        <ul className="navbar-nav mr-auto">
+                        <ul className="navbar-nav" id = "list">
                             {/* 메인 화면 */}
-                            <li className="nav-item">
+                            <li className="nav-item" id ="tour">
                                 <Link className="nav-link" to="/">
-                                    <i className="fas fa-home"></i> 관광지
+                                    <i className="fas fa-home"></i> 홈
                                 </Link>
                             </li>
-                            {/* 맛집 화면 */}
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/food">
-                                    <i className="fas fa-food"></i> 맛집
-                                </Link>
-                            </li>
-                            {/* 맛집 화면 */}
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/zzim">
-                                    <i className="fas fa-zzim"></i> 찜
-                                </Link>
-                            </li>
+                            {/*/!* 맛집 화면 *!/*/}
+                            {/*<li className="nav-item" id ="food">*/}
+                            {/*    <Link className="nav-link" to="/food" id ="food_text">*/}
+                            {/*        <i className="fas fa-food"></i> 맛집*/}
+                            {/*    </Link>*/}
+                            {/*</li>*/}
+                            {/*/!* 맛집 화면 *!/*/}
+                            {/*<li className="nav-item" id ="zzim">*/}
+                            {/*    <Link className="nav-link" to="/zzim" id ="zzim_text">*/}
+                            {/*        <i className="fas fa-zzim"></i> 찜*/}
+                            {/*    </Link>*/}
+                            {/*</li>*/}
+
 
                         </ul>
-                        <ul className="navbar-nav ml-auto">
+                        <ul className="navbar-nav">
                             {auth ? (
                                 <>
                                     {/* 회원 정보 */}
@@ -58,15 +60,15 @@ function Header() {
                             ) : (
                                 <>
                                     {/* 로그인 */}
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/login">
+                                    <li className="nav-item" id="login">
+                                        <Link className="nav-link" to="/login" id="logintext">
                                             로그인
                                         </Link>
                                     </li>
 
                                     {/* 회원가입 */}
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/join">
+                                    <li className="nav-item" id = "signup">
+                                        <Link className="nav-link" to="/join" id ="signuptext">
                                             회원가입
                                         </Link>
                                     </li>
