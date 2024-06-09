@@ -42,16 +42,24 @@
 
 /*밀투어*/
 
-#div_list{
-    margin-top: 50px;
+.container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-auto-rows: 100px 100px;
 }
-#div_map {
-    margin-left: 300px;
 
-}
+/*#div_list{*/
+/*    margin-top: 50px;*/
+/*}*/
+/*#div_map {*/
+/*    margin-left: 300px;*/
+/*}*/
 
 body{
     background-color: #0FA958;
+
 }
+
+
 
 

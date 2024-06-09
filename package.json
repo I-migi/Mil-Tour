@@ -15,7 +15,7 @@
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.3.1",
     "react-js-pagination": "^3.0.3",
-    "react-kakao-maps-sdk": "^1.1.26",
+    "react-kakao-maps-sdk": "^1.1.27",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
@@ -48,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^7.0.1",
+    "kakao.maps.d.ts": "^0.1.39"
   }
 }
