@@ -2,6 +2,14 @@
     background-color: #0FA958;
 
 }
+
+/*.header_img{*/
+
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*}*/
+
+
 #login {
     background-color: #FFC700;
     margin: 10px;
@@ -36,8 +44,8 @@
 
 }
 
+
 header {
     border-bottom: 1px solid;
 }
-
 

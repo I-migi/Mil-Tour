@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
-
 import "../../css/header.css"
+// import * as url from "url";
 
 function Header() {
     const { auth, setAuth } = useContext(AuthContext);
@@ -21,7 +21,10 @@ function Header() {
                             {/* 메인 화면 */}
                             <li className="nav-item" id ="tour">
                                 <Link className="nav-link" to="/">
-                                    <i className="fas fa-home"></i> 홈
+                                    {/*style={{width: 100 height: 50}}*/}
+                                    <i className="fas fa-home">
+                                        <img style={{width: 200, height: 40}} src={'/img/miltour_logo.png'}></img>
+                                    </i>
                                 </Link>
                             </li>
                             {/*/!* 맛집 화면 *!/*/}
