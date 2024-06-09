@@ -30,7 +30,14 @@ const Home = ({ } ) => {
     const infowindow = new kakao.maps.InfoWindow({zIndex: 1})
 
 
+    function panTo(e,s)  {
 
+
+        let moveLatLon = new kakao.maps.LatLng(e, s);
+
+        mapRef.current.panTo(moveLatLon);
+
+    }
     useEffect(() => {
         //현재위치로 뜨게 함
         const container = document.getElementById("map");
@@ -52,6 +59,9 @@ const Home = ({ } ) => {
         )
 
     },[keyword]);
+
+
+
 
 
     listmap.forEach((list) => {
@@ -82,7 +92,7 @@ const Home = ({ } ) => {
 
 
     const imageSrc1 = '/img/tour_marker.png';
-    const imageSize1 = new kakao.maps.Size(36, 37);
+    const imageSize1 = new kakao.maps.Size(36, 40);
     const imgOptions1 = {
         // spriteSize: new kakao.maps.Size(36, 691),
         // spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10),
@@ -134,18 +144,6 @@ const Home = ({ } ) => {
     //
 
 
-
-    // useEffect(() => {
-    //     const pullUpPageContent = playRef.current;
-    //     // if (isPlay) {
-    //         TweenMax.to(pullUpPageContent, {
-    //             y: "-100%",
-    //             delay: 1.8,
-    //         });
-    //     // }
-    // }, );
-    // // [isPlay]
-
     //
     const searchPlaces = () => {
         if(!keyword.trim()) {
@@ -156,10 +154,13 @@ const Home = ({ } ) => {
         // ps.categorySearch("FD6", placesSearchCB, {useMapBounds : true});
     }
 
+    let bounds = new kakao.maps.LatLngBounds();
     const placesSearchCB = (data, status, pagination) => {
         if (status === kakao.maps.services.Status.OK) {
             displayPlaces(data);
             setPagination(pagination);
+            bounds = new kakao.maps.LatLngBounds();
+
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
             alert('검색 결과가 존재하지 않습니다.');
         } else if (status === kakao.maps.services.Status.ERROR) {
@@ -175,9 +176,7 @@ const Home = ({ } ) => {
             const placePosition = new kakao.maps.LatLng(place.y, place.x);
             const marker = addMarker(placePosition, index);
 
-            const bounds = new kakao.maps.LatLngBounds();
-
-                bounds.extend(placePosition);
+                 bounds.extend(placePosition);
 
                 kakao.maps.event.addListener(marker, 'mouseover', () => {
                     displayInfowindow(marker, place.place_name);
@@ -273,15 +272,6 @@ const Home = ({ } ) => {
 
 
 
-
-    function panTo(e,s)  {
-
-
-        let moveLatLon = new kakao.maps.LatLng(e, s);
-
-        mapRef.current.panTo(moveLatLon);
-
-    }
 
 
 
